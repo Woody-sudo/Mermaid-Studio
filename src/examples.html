@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example Library</title>
+    <script>
+      (() => {
+        try {
+          const raw = localStorage.getItem('appearance');
+          const mode =
+            raw === 'light' || raw === 'dark' || raw === 'system'
+              ? raw
+              : 'system';
+          document.documentElement.setAttribute('data-theme', mode);
+        } catch (_) {
+          document.documentElement.setAttribute('data-theme', 'system');
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="examples.css" />
+    <script type="module" src="/examples.js"></script>
+  </head>
+  <body>
+    <header class="library-titlebar" data-tauri-drag-region>
+      <div class="library-title-wrap" data-tauri-drag-region>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+        </svg>
+        <h1 class="library-title" data-i18n="example_library">Example Library</h1>
+      </div>
+      <div class="library-toolbar-actions">
+        <input
+          id="template-search"
+          class="library-search"
+          type="search"
+          data-i18n-placeholder="search_examples"
+          placeholder="Search templates"
+          aria-label="Search templates"
+        />
+        <button id="btn-close" class="btn btn-secondary" data-i18n="close">Close</button>
+      </div>
+    </header>
+
+    <main class="library-layout">
+      <aside class="library-categories">
+        <div class="panel-title-row">
+          <span class="panel-title" data-i18n="categories">Categories</span>
+          <div class="panel-title-actions">
+            <button
+              id="btn-add-category"
+              class="btn btn-secondary btn-small btn-icon"
+              type="button"
+              data-i18n-title="add_category"
+              aria-label="Add category"
+              title="Add category"
+            >
+              +
+            </button>
+            <button
+              id="btn-delete-category"
+              class="btn btn-secondary btn-small btn-icon"
+              type="button"
+              data-i18n-title="delete_category"
+              aria-label="Delete category"
+              title="Delete category"
+            >
+              -
+            </button>
+          </div>
+        </div>
+        <div id="category-list" class="category-list"></div>
+      </aside>
+      <div
+        class="library-resizer"
+        data-resizer="1"
+        role="separator"
+        aria-orientation="vertical"
+        aria-label="Resize categories and templates columns"
+        tabindex="0"
+      ></div>
+
+      <section class="library-templates">
+        <div class="panel-title-row">
+          <span class="panel-title" data-i18n="templates">Templates</span>
+          <div class="panel-title-actions">
+            <button
+              id="btn-add-template"
+              class="btn btn-secondary btn-small btn-icon"
+              type="button"
+              data-i18n-title="add_template"
+              aria-label="Add template"
+              title="Add template"
+            >
+              +
+            </button>
+            <button
+              id="btn-delete-template"
+              class="btn btn-secondary btn-small btn-icon"
+              type="button"
+              data-i18n-title="delete_template"
+              aria-label="Delete template"
+              title="Delete template"
+            >
+              -
+            </button>
+            <button id="btn-import-templates" class="btn btn-secondary btn-small" data-i18n="import_templates">
+              Import
+            </button>
+            <button id="btn-backup-templates" class="btn btn-secondary btn-small" data-i18n="backup_templates">
+              Backup
+            </button>
+            <span id="template-count" class="template-count"></span>
+          </div>
+        </div>
+        <div id="template-list" class="template-list"></div>
+      </section>
+      <div
+        class="library-resizer"
+        data-resizer="2"
+        role="separator"
+        aria-orientation="vertical"
+        aria-label="Resize templates and preview columns"
+        tabindex="0"
+      ></div>
+
+      <section class="library-preview">
+        <div class="preview-header">
+          <div>
+            <div id="selected-title" class="selected-title"></div>
+            <div id="selected-meta" class="selected-meta"></div>
+          </div>
+          <div class="preview-actions">
+            <button id="btn-edit-template" class="btn btn-secondary" data-i18n="edit_template">
+              Edit
+            </button>
+            <button
+              id="btn-cancel-template-edit"
+              class="btn btn-secondary"
+              data-i18n="cancel_edit"
+              hidden
+            >
+              Cancel
+            </button>
+            <button id="btn-insert" class="btn btn-primary" data-i18n="insert_template">
+              Insert
+            </button>
+            <button id="btn-insert-close" class="btn btn-secondary" data-i18n="insert_and_close">
+              Insert & Close
+            </button>
+          </div>
+        </div>
+        <div class="template-editor-bar">
+          <div class="template-field">
+            <label
+              class="template-field-label"
+              for="template-name-input"
+              data-i18n="template_name_label"
+            >
+              Template Name
+            </label>
+            <input
+              id="template-name-input"
+              class="template-input"
+              type="text"
+              data-i18n-placeholder="template_name_placeholder"
+              placeholder="Enter template name"
+              aria-label="Template Name"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+          <div class="template-field template-field-category">
+            <label
+              class="template-field-label"
+              for="template-category-select"
+              data-i18n="template_category_label"
+            >
+              Template Category
+            </label>
+            <select
+              id="template-category-select"
+              class="template-select"
+              aria-label="Template Category"
+            ></select>
+          </div>
+        </div>
+        <div id="selected-code-editor" class="selected-code"></div>
+      </section>
+    </main>
+  </body>
+</html>

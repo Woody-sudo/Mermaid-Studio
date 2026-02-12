@@ -1,0 +1,953 @@
+{
+  "libraryName": "Example Library",
+  "version": 1,
+  "generatedOn": "2026-02-11",
+  "totalTemplates": 92,
+  "categories": [
+    "Flowchart",
+    "Class",
+    "Sequence",
+    "Entity Relationship",
+    "State",
+    "Mindmap",
+    "Architecture",
+    "Block",
+    "C4",
+    "Gantt",
+    "Git",
+    "Kanban",
+    "Packet",
+    "Pie",
+    "Quadrant",
+    "Radar",
+    "Requirement",
+    "Sankey",
+    "Timeline",
+    "Treemap",
+    "User Journey",
+    "XY",
+    "ZenUML"
+  ],
+  "templates": [
+    {
+      "id": "flowchart-class-shorthand-040",
+      "title": "::: Class Shorthand",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph TD\n      A[Normal]:::default --> B[Highlighted]:::highlight --> C[Error]:::error\n      classDef default fill:#f4f4f5,stroke:#a1a1aa\n      classDef highlight fill:#fbbf24,stroke:#d97706\n      classDef error fill:#ef4444,stroke:#dc2626"
+    },
+    {
+      "id": "flowchart-all-12-flowchart-shapes-029",
+      "title": "All 12 Flowchart Shapes",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph LR\n      A[Rectangle] --> B(Rounded)\n      B --> C{Diamond}\n      C --> D([Stadium])\n      D --> E((Circle))\n      E --> F[[Subroutine]]\n      F --> G(((Double Circle)))\n      G --> H{{Hexagon}}\n      H --> I[(Database)]\n      I --> J>Flag]\n      J --> K[/Trapezoid\\]\n      K --> L[\\Inverse Trap/]"
+    },
+    {
+      "id": "flowchart-all-edge-styles-030",
+      "title": "All Edge Styles",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph TD\n      A[Source] -->|solid| B[Target 1]\n      A -.->|dotted| C[Target 2]\n      A ==>|thick| D[Target 3]"
+    },
+    {
+      "id": "flowchart-batch-1-shapes-027",
+      "title": "Batch 1 Shapes",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph LR\n      A[[Subroutine]] --> B(((Double Circle)))\n      B --> C{{Hexagon}}"
+    },
+    {
+      "id": "flowchart-batch-2-shapes-028",
+      "title": "Batch 2 Shapes",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph LR\n      A[(Database)] --> B>Flag Shape]\n      B --> C[/Wider Bottom\\]\n      C --> D[\\Wider Top/]"
+    },
+    {
+      "id": "flowchart-bidirectional-arrows-032",
+      "title": "Bidirectional Arrows",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph LR\n      A[Client] <-->|sync| B[Server]\n      B <-.->|heartbeat| C[Monitor]\n      C <==>|data| D[Storage]"
+    },
+    {
+      "id": "flowchart-chained-edges-034",
+      "title": "Chained Edges",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph LR\n      A[Step 1] --> B[Step 2] --> C[Step 3] --> D[Step 4] --> E[Step 5]"
+    },
+    {
+      "id": "flowchart-ci-cd-pipeline-042",
+      "title": "CI/CD Pipeline",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph TD\n      subgraph ci [CI Pipeline]\n        A[Push Code] --> B{Tests Pass?}\n        B -->|Yes| C[Build Image]\n        B -->|No| D[Fix & Retry]\n        D -.-> A\n      end\n      C --> E([Deploy Staging])\n      E --> F{QA Approved?}\n      F -->|Yes| G((Production))\n      F -->|No| D"
+    },
+    {
+      "id": "flowchart-decision-tree-044",
+      "title": "Decision Tree",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph TD\n      A{Is it raining?} -->|Yes| B{Have umbrella?}\n      A -->|No| C([Go outside])\n      B -->|Yes| D([Go with umbrella])\n      B -->|No| E{Is it heavy?}\n      E -->|Yes| F([Stay inside])\n      E -->|No| G([Run for it])"
+    },
+    {
+      "id": "flowchart-direction-bottom-top-bt-036",
+      "title": "Direction: Bottom-Top (BT)",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph BT\n      A[Foundation] --> B[Layer 2] --> C[Top]"
+    },
+    {
+      "id": "flowchart-direction-left-right-lr-035",
+      "title": "Direction: Left-Right (LR)",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph LR\n      A[Input] --> B[Transform] --> C[Output]"
+    },
+    {
+      "id": "flowchart-flowchart-001",
+      "title": "Flowchart",
+      "category": "Flowchart",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "flowchart TD\n    A[Christmas] -->|Get money| B(Go shopping)\n    B --> C{Let me think}\n    C -->|One| D[Laptop]\n    C -->|Two| E[iPhone]\n    C -->|Three| F[fa:fa-car Car]"
+    },
+    {
+      "id": "flowchart-git-branching-workflow-045",
+      "title": "Git Branching Workflow",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph LR\n      A[main] --> B[develop]\n      B --> C[feature/auth]\n      B --> D[feature/ui]\n      C --> E{PR Review}\n      D --> E\n      E -->|approved| B\n      B --> F[release/1.0]\n      F --> G{Tests?}\n      G -->|pass| A\n      G -->|fail| F"
+    },
+    {
+      "id": "flowchart-inline-style-overrides-041",
+      "title": "Inline Style Overrides",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph TD\n      A[Default] --> B[Custom Colors] --> C[Another Custom]\n      style B fill:#3b82f6,stroke:#1d4ed8,color:#ffffff\n      style C fill:#10b981,stroke:#059669"
+    },
+    {
+      "id": "flowchart-nested-subgraphs-038",
+      "title": "Nested Subgraphs",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph TD\n      subgraph Cloud\n        subgraph us-east [US East Region]\n          A[Web Server] --> B[App Server]\n        end\n        subgraph us-west [US West Region]\n          C[Web Server] --> D[App Server]\n        end\n      end\n      E[Load Balancer] --> A\n      E --> C"
+    },
+    {
+      "id": "flowchart-no-arrow-edges-031",
+      "title": "No-Arrow Edges",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph TD\n      A[Node 1] ---|related| B[Node 2]\n      B -.- C[Node 3]\n      C === D[Node 4]"
+    },
+    {
+      "id": "flowchart-original-node-shapes-026",
+      "title": "Original Node Shapes",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph LR\n      A[Rectangle] --> B(Rounded)\n      B --> C{Diamond}\n      C --> D([Stadium])\n      D --> E((Circle))"
+    },
+    {
+      "id": "flowchart-parallel-links-033",
+      "title": "Parallel Links (&)",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph TD\n      A[Input] & B[Config] --> C[Processor]\n      C --> D[Output] & E[Log]"
+    },
+    {
+      "id": "flowchart-simple-flow-025",
+      "title": "Simple Flow",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph TD\n      A[Start] --> B[Process] --> C[End]"
+    },
+    {
+      "id": "flowchart-subgraph-direction-override-039",
+      "title": "Subgraph Direction Override",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph TD\n      subgraph pipeline [Processing Pipeline]\n        direction LR\n        A[Input] --> B[Parse] --> C[Transform] --> D[Output]\n      end\n      E[Source] --> A\n      D --> F[Sink]"
+    },
+    {
+      "id": "flowchart-subgraphs-037",
+      "title": "Subgraphs",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph TD\n      subgraph Frontend\n        A[React App] --> B[State Manager]\n      end\n      subgraph Backend\n        C[API Server] --> D[Database]\n      end\n      B --> C"
+    },
+    {
+      "id": "flowchart-system-architecture-043",
+      "title": "System Architecture",
+      "category": "Flowchart",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "graph LR\n      subgraph clients [Client Layer]\n        A([Web App]) --> B[API Gateway]\n        C([Mobile App]) --> B\n      end\n      subgraph services [Service Layer]\n        B --> D[Auth Service]\n        B --> E[User Service]\n        B --> F[Order Service]\n      end\n      subgraph data [Data Layer]\n        D --> G[(Auth DB)]\n        E --> H[(User DB)]\n        F --> I[(Order DB)]\n        F --> J([Message Queue])\n      end"
+    },
+    {
+      "id": "class-class-002",
+      "title": "Class",
+      "category": "Class",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "classDiagram\n    Animal <|-- Duck\n    Animal <|-- Fish\n    Animal <|-- Zebra\n    Animal : +int age\n    Animal : +String gender\n    Animal: +isMammal()\n    Animal: +mate()\n    class Duck{\n      +String beakColor\n      +swim()\n      +quack()\n    }\n    class Fish{\n      -int sizeInFeet\n      -canEat()\n    }\n    class Zebra{\n      +bool is_wild\n      +run()\n    }"
+    },
+    {
+      "id": "class-class-abstract-annotation-067",
+      "title": "Class: Abstract Annotation",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      class Shape {\n        <<abstract>>\n        +String color\n        +area() double\n        +draw() void\n      }"
+    },
+    {
+      "id": "class-class-aggregation-o-071",
+      "title": "Class: Aggregation (o--)",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      class University {\n        +String name\n      }\n      class Department {\n        +String faculty\n      }\n      University o-- Department"
+    },
+    {
+      "id": "class-class-all-6-relationship-types-075",
+      "title": "Class: All 6 Relationship Types",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      A <|-- B : inheritance\n      C *-- D : composition\n      E o-- F : aggregation\n      G --> H : association\n      I ..> J : dependency\n      K ..|> L : realization"
+    },
+    {
+      "id": "class-class-association-072",
+      "title": "Class: Association (-->)",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      class Customer {\n        +String name\n      }\n      class Order {\n        +int orderId\n      }\n      Customer --> Order"
+    },
+    {
+      "id": "class-class-basic-class-064",
+      "title": "Class: Basic Class",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      class Animal {\n        +String name\n        +int age\n        +eat() void\n        +sleep() void\n      }"
+    },
+    {
+      "id": "class-class-composition-070",
+      "title": "Class: Composition (*--)",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      class Car {\n        +String model\n        +start() void\n      }\n      class Engine {\n        +int horsepower\n        +rev() void\n      }\n      Car *-- Engine"
+    },
+    {
+      "id": "class-class-dependency-073",
+      "title": "Class: Dependency (..>)",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      class Service {\n        +process() void\n      }\n      class Repository {\n        +find() Object\n      }\n      Service ..> Repository"
+    },
+    {
+      "id": "class-class-design-pattern-observer-077",
+      "title": "Class: Design Pattern - Observer",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      class Subject {\n        <<interface>>\n        +attach(Observer) void\n        +detach(Observer) void\n        +notify() void\n      }\n      class Observer {\n        <<interface>>\n        +update() void\n      }\n      class EventEmitter {\n        -List~Observer~ observers\n        +attach(Observer) void\n        +detach(Observer) void\n        +notify() void\n      }\n      class Logger {\n        +update() void\n      }\n      class Alerter {\n        +update() void\n      }\n      Subject <|.. EventEmitter\n      Observer <|.. Logger\n      Observer <|.. Alerter\n      EventEmitter --> Observer"
+    },
+    {
+      "id": "class-class-enum-annotation-068",
+      "title": "Class: Enum Annotation",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      class Status {\n        <<enumeration>>\n        ACTIVE\n        INACTIVE\n        PENDING\n        DELETED\n      }"
+    },
+    {
+      "id": "class-class-full-hierarchy-079",
+      "title": "Class: Full Hierarchy",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      class Animal {\n        <<abstract>>\n        +String name\n        +int age\n        +eat() void\n        +sleep() void\n      }\n      class Mammal {\n        +bool warmBlooded\n        +nurse() void\n      }\n      class Bird {\n        +bool canFly\n        +layEggs() void\n      }\n      class Dog {\n        +String breed\n        +bark() void\n      }\n      class Cat {\n        +bool isIndoor\n        +purr() void\n      }\n      class Parrot {\n        +String vocabulary\n        +speak() void\n      }\n      Animal <|-- Mammal\n      Animal <|-- Bird\n      Mammal <|-- Dog\n      Mammal <|-- Cat\n      Bird <|-- Parrot"
+    },
+    {
+      "id": "class-class-inheritance-069",
+      "title": "Class: Inheritance (<|--)",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      class Animal {\n        +String name\n        +eat() void\n      }\n      class Dog {\n        +String breed\n        +bark() void\n      }\n      class Cat {\n        +bool isIndoor\n        +meow() void\n      }\n      Animal <|-- Dog\n      Animal <|-- Cat"
+    },
+    {
+      "id": "class-class-interface-annotation-066",
+      "title": "Class: Interface Annotation",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      class Serializable {\n        <<interface>>\n        +serialize() String\n        +deserialize(data) void\n      }"
+    },
+    {
+      "id": "class-class-mvc-architecture-078",
+      "title": "Class: MVC Architecture",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      class Model {\n        -data Map\n        +getData() Map\n        +setData(key, val) void\n        +notify() void\n      }\n      class View {\n        -model Model\n        +render() void\n        +update() void\n      }\n      class Controller {\n        -model Model\n        -view View\n        +handleInput(event) void\n        +updateModel(data) void\n      }\n      Controller --> Model : updates\n      Controller --> View : refreshes\n      View --> Model : reads\n      Model ..> View : notifies"
+    },
+    {
+      "id": "class-class-realization-074",
+      "title": "Class: Realization (..|>)",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      class Flyable {\n        <<interface>>\n        +fly() void\n      }\n      class Bird {\n        +fly() void\n        +sing() void\n      }\n      Bird ..|> Flyable"
+    },
+    {
+      "id": "class-class-relationship-labels-076",
+      "title": "Class: Relationship Labels",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      class Teacher {\n        +String name\n      }\n      class Student {\n        +String name\n      }\n      class Course {\n        +String title\n      }\n      Teacher --> Course : teaches\n      Student --> Course : enrolled in"
+    },
+    {
+      "id": "class-class-visibility-markers-065",
+      "title": "Class: Visibility Markers",
+      "category": "Class",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "classDiagram\n      class User {\n        +String name\n        -String password\n        #int internalId\n        ~String packageField\n        +login() bool\n        -hashPassword() String\n        #validate() void\n        ~notify() void\n      }"
+    },
+    {
+      "id": "sequence-sequence-003",
+      "title": "Sequence",
+      "category": "Sequence",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "sequenceDiagram\n    Alice->>+John: Hello John, how are you?\n    Alice->>+John: John, can you hear me?\n    John-->>-Alice: Hi Alice, I can hear you!\n    John-->>-Alice: I feel great!"
+    },
+    {
+      "id": "sequence-sequence-activation-boxes-053",
+      "title": "Sequence: Activation Boxes",
+      "category": "Sequence",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "sequenceDiagram\n      participant C as Client\n      participant S as Server\n      C->>+S: Request\n      S->>+S: Process\n      S->>-S: Done\n      S-->>-C: Response"
+    },
+    {
+      "id": "sequence-sequence-actor-stick-figures-051",
+      "title": "Sequence: Actor Stick Figures",
+      "category": "Sequence",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "sequenceDiagram\n      actor U as User\n      participant S as System\n      participant DB as Database\n      U->>S: Click button\n      S->>DB: Query\n      DB-->>S: Results\n      S-->>U: Display"
+    },
+    {
+      "id": "sequence-sequence-alt-else-block-056",
+      "title": "Sequence: Alt/Else Block",
+      "category": "Sequence",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "sequenceDiagram\n      participant C as Client\n      participant S as Server\n      C->>S: Login\n      alt Valid credentials\n        S-->>C: 200 OK\n      else Invalid\n        S-->>C: 401 Unauthorized\n      else Account locked\n        S-->>C: 403 Forbidden\n      end"
+    },
+    {
+      "id": "sequence-sequence-arrow-types-052",
+      "title": "Sequence: Arrow Types",
+      "category": "Sequence",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "sequenceDiagram\n      A->>B: Solid arrow (sync)\n      B-->>A: Dashed arrow (return)\n      A-)B: Open arrow (async)\n      B--)A: Open dashed arrow"
+    },
+    {
+      "id": "sequence-sequence-basic-messages-049",
+      "title": "Sequence: Basic Messages",
+      "category": "Sequence",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "sequenceDiagram\n      Alice->>Bob: Hello Bob!\n      Bob-->>Alice: Hi Alice!"
+    },
+    {
+      "id": "sequence-sequence-critical-block-059",
+      "title": "Sequence: Critical Block",
+      "category": "Sequence",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "sequenceDiagram\n      participant A as App\n      participant DB as Database\n      A->>DB: BEGIN\n      critical Transaction\n        A->>DB: UPDATE accounts\n        A->>DB: INSERT log\n      end\n      A->>DB: COMMIT"
+    },
+    {
+      "id": "sequence-sequence-database-transaction-062",
+      "title": "Sequence: Database Transaction",
+      "category": "Sequence",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "sequenceDiagram\n      participant C as Client\n      participant S as Server\n      participant DB as Database\n      C->>S: POST /transfer\n      S->>DB: BEGIN\n      S->>DB: Debit account A\n      alt Success\n        S->>DB: Credit account B\n        S->>DB: INSERT audit_log\n        S->>DB: COMMIT\n        S-->>C: 200 OK\n      else Insufficient funds\n        S->>DB: ROLLBACK\n        S-->>C: 400 Bad Request\n      end"
+    },
+    {
+      "id": "sequence-sequence-loop-block-055",
+      "title": "Sequence: Loop Block",
+      "category": "Sequence",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "sequenceDiagram\n      participant C as Client\n      participant S as Server\n      C->>S: Connect\n      loop Every 30s\n        C->>S: Heartbeat\n        S-->>C: Ack\n      end\n      C->>S: Disconnect"
+    },
+    {
+      "id": "sequence-sequence-microservice-orchestration-063",
+      "title": "Sequence: Microservice Orchestration",
+      "category": "Sequence",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "sequenceDiagram\n      participant G as Gateway\n      participant A as Auth\n      participant U as Users\n      participant O as Orders\n      participant N as Notify\n      G->>A: Validate token\n      A-->>G: Valid\n      par Fetch data\n        G->>U: Get user\n        U-->>G: User data\n      and\n        G->>O: Get orders\n        O-->>G: Order list\n      end\n      G->>N: Send notification\n      N-->>G: Queued\n      Note over G: Aggregate response"
+    },
+    {
+      "id": "sequence-sequence-notes-right-left-over-060",
+      "title": "Sequence: Notes (Right/Left/Over)",
+      "category": "Sequence",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "sequenceDiagram\n      participant A as Alice\n      participant B as Bob\n      Note left of A: Alice prepares\n      A->>B: Hello\n      Note right of B: Bob thinks\n      B-->>A: Reply\n      Note over A,B: Conversation complete"
+    },
+    {
+      "id": "sequence-sequence-oauth-2-0-flow-061",
+      "title": "Sequence: OAuth 2.0 Flow",
+      "category": "Sequence",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "sequenceDiagram\n      actor U as User\n      participant App as Client App\n      participant Auth as Auth Server\n      participant API as Resource API\n      U->>App: Click Login\n      App->>Auth: Authorization request\n      Auth->>U: Login page\n      U->>Auth: Credentials\n      Auth-->>App: Authorization code\n      App->>Auth: Exchange code for token\n      Auth-->>App: Access token\n      App->>API: Request + token\n      API-->>App: Protected resource\n      App-->>U: Display data"
+    },
+    {
+      "id": "sequence-sequence-opt-block-057",
+      "title": "Sequence: Opt Block",
+      "category": "Sequence",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "sequenceDiagram\n      participant A as App\n      participant C as Cache\n      participant DB as Database\n      A->>C: Get data\n      C-->>A: Cache miss\n      opt Cache miss\n        A->>DB: Query\n        DB-->>A: Results\n        A->>C: Store in cache\n      end"
+    },
+    {
+      "id": "sequence-sequence-par-block-058",
+      "title": "Sequence: Par Block",
+      "category": "Sequence",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "sequenceDiagram\n      participant C as Client\n      participant A as AuthService\n      participant U as UserService\n      participant O as OrderService\n      C->>A: Authenticate\n      par Fetch user data\n        A->>U: Get profile\n      and Fetch orders\n        A->>O: Get orders\n      end\n      A-->>C: Combined response"
+    },
+    {
+      "id": "sequence-sequence-participant-aliases-050",
+      "title": "Sequence: Participant Aliases",
+      "category": "Sequence",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "sequenceDiagram\n      participant A as Alice\n      participant B as Bob\n      participant C as Charlie\n      A->>B: Hello\n      B->>C: Forward\n      C-->>A: Reply"
+    },
+    {
+      "id": "sequence-sequence-self-messages-054",
+      "title": "Sequence: Self-Messages",
+      "category": "Sequence",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "sequenceDiagram\n      participant S as Server\n      S->>S: Internal process\n      S->>S: Validate\n      S-->>S: Log"
+    },
+    {
+      "id": "entity-relationship-entity-relationship-004",
+      "title": "Entity Relationship",
+      "category": "Entity Relationship",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "erDiagram\n    CUSTOMER ||--o{ ORDER : places\n    ORDER ||--|{ ORDER_ITEM : contains\n    PRODUCT ||--o{ ORDER_ITEM : includes\n    CUSTOMER {\n        string id\n        string name\n        string email\n    }\n    ORDER {\n        string id\n        date orderDate\n        string status\n    }\n    PRODUCT {\n        string id\n        string name\n        float price\n    }\n    ORDER_ITEM {\n        int quantity\n        float price\n    }"
+    },
+    {
+      "id": "entity-relationship-er-all-cardinality-types-086",
+      "title": "ER: All Cardinality Types",
+      "category": "Entity Relationship",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "erDiagram\n      A ||--|| B : one-to-one\n      C ||--o{ D : one-to-many\n      E |o--|{ F : opt-to-many\n      G }|--o{ H : many-to-many"
+    },
+    {
+      "id": "entity-relationship-er-attribute-keys-pk-fk-uk-082",
+      "title": "ER: Attribute Keys (PK, FK, UK)",
+      "category": "Entity Relationship",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "erDiagram\n      ORDER {\n        int id PK\n        int customer_id FK\n        string invoice_number UK\n        decimal total\n        date order_date\n        string status\n      }"
+    },
+    {
+      "id": "entity-relationship-er-basic-relationship-080",
+      "title": "ER: Basic Relationship",
+      "category": "Entity Relationship",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "erDiagram\n      CUSTOMER ||--o{ ORDER : places"
+    },
+    {
+      "id": "entity-relationship-er-blog-platform-schema-091",
+      "title": "ER: Blog Platform Schema",
+      "category": "Entity Relationship",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "erDiagram\n      USER {\n        int id PK\n        string username UK\n        string email UK\n        date joined\n      }\n      POST {\n        int id PK\n        string title\n        text content\n        int author_id FK\n        date published\n      }\n      COMMENT {\n        int id PK\n        text body\n        int post_id FK\n        int user_id FK\n        date created\n      }\n      TAG {\n        int id PK\n        string name UK\n      }\n      USER ||--o{ POST : writes\n      USER ||--o{ COMMENT : authors\n      POST ||--o{ COMMENT : has\n      POST }|--o{ TAG : tagged-with"
+    },
+    {
+      "id": "entity-relationship-er-e-commerce-schema-090",
+      "title": "ER: E-Commerce Schema",
+      "category": "Entity Relationship",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "erDiagram\n      CUSTOMER {\n        int id PK\n        string name\n        string email UK\n      }\n      ORDER {\n        int id PK\n        date created\n        int customer_id FK\n      }\n      PRODUCT {\n        int id PK\n        string name\n        float price\n      }\n      LINE_ITEM {\n        int id PK\n        int order_id FK\n        int product_id FK\n        int quantity\n      }\n      CUSTOMER ||--o{ ORDER : places\n      ORDER ||--|{ LINE_ITEM : contains\n      PRODUCT ||--o{ LINE_ITEM : includes"
+    },
+    {
+      "id": "entity-relationship-er-entity-with-attributes-081",
+      "title": "ER: Entity with Attributes",
+      "category": "Entity Relationship",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "erDiagram\n      CUSTOMER {\n        int id PK\n        string name\n        string email UK\n        date created_at\n      }"
+    },
+    {
+      "id": "entity-relationship-er-exactly-one-to-exactly-one-083",
+      "title": "ER: Exactly One to Exactly One (||--||)",
+      "category": "Entity Relationship",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "erDiagram\n      PERSON ||--|| PASSPORT : has"
+    },
+    {
+      "id": "entity-relationship-er-identifying-solid-relationship-087",
+      "title": "ER: Identifying (Solid) Relationship",
+      "category": "Entity Relationship",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "erDiagram\n      ORDER ||--|{ LINE_ITEM : contains"
+    },
+    {
+      "id": "entity-relationship-er-mixed-identifying-non-identifying-089",
+      "title": "ER: Mixed Identifying & Non-Identifying",
+      "category": "Entity Relationship",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "erDiagram\n      ORDER ||--|{ LINE_ITEM : contains\n      ORDER ||..o{ SHIPMENT : ships-via\n      PRODUCT ||--o{ LINE_ITEM : includes\n      PRODUCT ||..o{ REVIEW : receives"
+    },
+    {
+      "id": "entity-relationship-er-non-identifying-dashed-relationship-088",
+      "title": "ER: Non-Identifying (Dashed) Relationship",
+      "category": "Entity Relationship",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "erDiagram\n      USER ||..o{ LOG_ENTRY : generates\n      USER ||..o{ SESSION : opens"
+    },
+    {
+      "id": "entity-relationship-er-one-or-more-to-zero-or-many-o-085",
+      "title": "ER: One-or-More to Zero-or-Many (}|--o{)",
+      "category": "Entity Relationship",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "erDiagram\n      TEACHER }|--o{ COURSE : teaches"
+    },
+    {
+      "id": "entity-relationship-er-school-management-schema-092",
+      "title": "ER: School Management Schema",
+      "category": "Entity Relationship",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "erDiagram\n      STUDENT {\n        int id PK\n        string name\n        date dob\n        string grade\n      }\n      TEACHER {\n        int id PK\n        string name\n        string department\n      }\n      COURSE {\n        int id PK\n        string title\n        int teacher_id FK\n        int credits\n      }\n      ENROLLMENT {\n        int id PK\n        int student_id FK\n        int course_id FK\n        string semester\n        float grade\n      }\n      TEACHER ||--o{ COURSE : teaches\n      STUDENT ||--o{ ENROLLMENT : enrolled\n      COURSE ||--o{ ENROLLMENT : has"
+    },
+    {
+      "id": "entity-relationship-er-zero-or-one-to-one-or-many-o-084",
+      "title": "ER: Zero-or-One to One-or-Many (|o--|{)",
+      "category": "Entity Relationship",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "erDiagram\n      SUPERVISOR |o--|{ EMPLOYEE : manages"
+    },
+    {
+      "id": "state-basic-state-diagram-046",
+      "title": "Basic State Diagram",
+      "category": "State",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "stateDiagram-v2\n      [*] --> Idle\n      Idle --> Active : start\n      Active --> Idle : cancel\n      Active --> Done : complete\n      Done --> [*]"
+    },
+    {
+      "id": "state-beautiful-mermaid-024",
+      "title": "Beautiful Mermaid",
+      "category": "State",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "stateDiagram-v2\n        direction LR\n        [*] --> Input\n        Input --> Parse: DSL\n        Parse --> Layout: AST\n        Layout --> SVG: Vector\n        Layout --> ASCII: Text\n        SVG --> Theme\n        ASCII --> Theme\n        Theme --> Output\n        Output --> [*]"
+    },
+    {
+      "id": "state-state-005",
+      "title": "State",
+      "category": "State",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "stateDiagram-v2\n    [*] --> Still\n    Still --> [*]\n    Still --> Moving\n    Moving --> Still\n    Moving --> Crash\n    Crash --> [*]"
+    },
+    {
+      "id": "state-state-composite-states-047",
+      "title": "State: Composite States",
+      "category": "State",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "stateDiagram-v2\n      [*] --> Idle\n      Idle --> Processing : submit\n      state Processing {\n        parse --> validate\n        validate --> execute\n      }\n      Processing --> Complete : done\n      Processing --> Error : fail\n      Error --> Idle : retry\n      Complete --> [*]"
+    },
+    {
+      "id": "state-state-connection-lifecycle-048",
+      "title": "State: Connection Lifecycle",
+      "category": "State",
+      "source": {
+        "file": "Scrape Mermaid Samples.docx",
+        "format": "docx"
+      },
+      "code": "stateDiagram-v2\n      [*] --> Closed\n      Closed --> Connecting : connect\n      Connecting --> Connected : success\n      Connecting --> Closed : timeout\n      Connected --> Disconnecting : close\n      Connected --> Reconnecting : error\n      Reconnecting --> Connected : success\n      Reconnecting --> Closed : max_retries\n      Disconnecting --> Closed : done\n      Closed --> [*]"
+    },
+    {
+      "id": "mindmap-mindmap-006",
+      "title": "Mindmap",
+      "category": "Mindmap",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "mindmap\n  root((mindmap))\n    Origins\n      Long history\n      ::icon(fa fa-book)\n      Popularisation\n        British popular psychology author Tony Buzan\n    Research\n      On effectiveness<br/>and features\n      On Automatic creation\n        Uses\n            Creative techniques\n            Strategic planning\n            Argument mapping\n    Tools\n      Pen and paper\n      Mermaid"
+    },
+    {
+      "id": "architecture-architecture-007",
+      "title": "Architecture",
+      "category": "Architecture",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "architecture-beta\n    group api(cloud)[API]\n\n    service db(database)[Database] in api\n    service disk1(disk)[Storage] in api\n    service disk2(disk)[Storage] in api\n    service server(server)[Server] in api\n\n    db:L -- R:server\n    disk1:T -- B:server\n    disk2:T -- B:db"
+    },
+    {
+      "id": "block-block-008",
+      "title": "Block",
+      "category": "Block",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "block-beta\ncolumns 1\n  db((\"DB\"))\n  blockArrowId6<[\"&nbsp;&nbsp;&nbsp;\"]>(down)\n  block:ID\n    A\n    B[\"A wide one in the middle\"]\n    C\n  end\n  space\n  D\n  ID --> D\n  C --> D\n  style B fill:#969,stroke:#333,stroke-width:4px"
+    },
+    {
+      "id": "c4-c4-009",
+      "title": "C4",
+      "category": "C4",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "C4Context\n    title System Context diagram for Internet Banking System\n    Enterprise_Boundary(b0, \"BankBoundary0\") {\n        Person(customerA, \"Banking Customer A\", \"A customer of the bank, with personal bank accounts.\")\n        Person(customerB, \"Banking Customer B\")\n        Person_Ext(customerC, \"Banking Customer C\", \"desc\")\n\n        Person(customerD, \"Banking Customer D\", \"A customer of the bank, <br/> with personal bank accounts.\")\n\n        System(SystemAA, \"Internet Banking System\", \"Allows customers to view information about their bank accounts, and make payments.\")\n\n        Enterprise_Boundary(b1, \"BankBoundary\") {\n            SystemDb_Ext(SystemE, \"Mainframe Banking System\", \"Stores all of the core banking information about customers, accounts, transactions, etc.\")\n\n            System_Boundary(b2, \"BankBoundary2\") {\n                System(SystemA, \"Banking System A\")\n                System(SystemB, \"Banking System B\", \"A system of the bank, with personal bank accounts. next line.\")\n            }\n\n            System_Ext(SystemC, \"E-mail system\", \"The internal Microsoft Exchange e-mail system.\")\n            SystemDb(SystemD, \"Banking System D Database\", \"A system of the bank, with personal bank accounts.\")\n\n            Boundary(b3, \"BankBoundary3\", \"boundary\") {\n                SystemQueue(SystemF, \"Banking System F Queue\", \"A system of the bank.\")\n                SystemQueue_Ext(SystemG, \"Banking System G Queue\", \"A system of the bank, with personal bank accounts.\")\n            }\n        }\n    }\n\n    BiRel(customerA, SystemAA, \"Uses\")\n    BiRel(SystemAA, SystemE, \"Uses\")\n    Rel(SystemAA, SystemC, \"Sends e-mails\", \"SMTP\")\n    Rel(SystemC, customerA, \"Sends e-mails to\")"
+    },
+    {
+      "id": "gantt-gantt-010",
+      "title": "Gantt",
+      "category": "Gantt",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "gantt\n    title A Gantt Diagram\n    dateFormat  YYYY-MM-DD\n    section Section\n    A task           :a1, 2014-01-01, 30d\n    Another task     :after a1  , 20d\n    section Another\n    Task in sec      :2014-01-12  , 12d\n    another task      : 24d"
+    },
+    {
+      "id": "git-git-011",
+      "title": "Git",
+      "category": "Git",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "gitGraph\n    commit\n    branch develop\n    checkout develop\n    commit\n    commit\n    checkout main\n    merge develop\n    commit\n    branch feature\n    checkout feature\n    commit\n    commit\n    checkout main\n    merge feature"
+    },
+    {
+      "id": "kanban-kanban-012",
+      "title": "Kanban",
+      "category": "Kanban",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "---\nconfig:\n  kanban:\n    ticketBaseUrl: 'https://github.com/mermaid-js/mermaid/issues/#TICKET#'\n---\nkanban\n  Todo\n    [Create Documentation]\n    docs[Create Blog about the new diagram]\n  [In progress]\n    id6[Create renderer so that it works in all cases. We also add some extra text here for testing purposes. And some more just for the extra flare.]\n  id9[Ready for deploy]\n    id8[Design grammar]@{ assigned: 'knsv' }\n  id10[Ready for test]\n    id4[Create parsing tests]@{ ticket: 2038, assigned: 'K.Sveidqvist', priority: 'High' }\n    id66[last item]@{ priority: 'Very Low', assigned: 'knsv' }\n  id11[Done]\n    id5[define getData]\n    id2[Title of diagram is more than 100 chars when user duplicates diagram with 100 char]@{ ticket: 2036, priority: 'Very High'}\n    id3[Update DB function]@{ ticket: 2037, assigned: knsv, priority: 'High' }\n  id12[Can't reproduce]\n    id3[Weird flickering in Firefox]"
+    },
+    {
+      "id": "packet-packet-013",
+      "title": "Packet",
+      "category": "Packet",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "---\ntitle: \"TCP Packet\"\n---\npacket\n0-15: \"Source Port\"\n16-31: \"Destination Port\"\n32-63: \"Sequence Number\"\n64-95: \"Acknowledgment Number\"\n96-99: \"Data Offset\"\n100-105: \"Reserved\"\n106: \"URG\"\n107: \"ACK\"\n108: \"PSH\"\n109: \"RST\"\n110: \"SYN\"\n111: \"FIN\"\n112-127: \"Window\"\n128-143: \"Checksum\"\n144-159: \"Urgent Pointer\"\n160-191: \"(Options and Padding)\"\n192-255: \"Data (variable length)\""
+    },
+    {
+      "id": "pie-pie-014",
+      "title": "Pie",
+      "category": "Pie",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "pie title Pets adopted by volunteers\n    \"Dogs\" : 386\n    \"Cats\" : 85\n    \"Rats\" : 15"
+    },
+    {
+      "id": "quadrant-quadrant-015",
+      "title": "Quadrant",
+      "category": "Quadrant",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "quadrantChart\n    title Reach and engagement of campaigns\n    x-axis Low Reach --> High Reach\n    y-axis Low Engagement --> High Engagement\n    quadrant-1 We should expand\n    quadrant-2 Need to promote\n    quadrant-3 Re-evaluate\n    quadrant-4 May be improved\n    Campaign A: [0.3, 0.6]\n    Campaign B: [0.45, 0.23]\n    Campaign C: [0.57, 0.69]\n    Campaign D: [0.78, 0.34]\n    Campaign E: [0.40, 0.34]\n    Campaign F: [0.35, 0.78]"
+    },
+    {
+      "id": "radar-radar-016",
+      "title": "Radar",
+      "category": "Radar",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "---\ntitle: \"Grades\"\n---\nradar-beta\n  axis m[\"Math\"], s[\"Science\"], e[\"English\"]\n  axis h[\"History\"], g[\"Geography\"], a[\"Art\"]\n  curve a[\"Alice\"]{85, 90, 80, 70, 75, 90}\n  curve a[\"Alice\"]{85, 90, 80, 70, 75, 90}\n  curve b[\"Bob\"]{70, 75, 85, 80, 90, 85}\n  max 100\n  min 0"
+    },
+    {
+      "id": "requirement-requirement-017",
+      "title": "Requirement",
+      "category": "Requirement",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "requirementDiagram\n\n    requirement test_req {\n    id: 1\n    text: the test text.\n    risk: high\n    verifymethod: test\n    }\n\n    element test_entity {\n    type: simulation\n    }\n\n    test_entity - satisfies -> test_req"
+    },
+    {
+      "id": "sankey-sankey-018",
+      "title": "Sankey",
+      "category": "Sankey",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "---\nconfig:\n  sankey:\n    showValues: false\n---\nsankey-beta\n\nAgricultural 'waste',Bio-conversion,124.729\nBio-conversion,Liquid,0.597\nBio-conversion,Losses,26.862\nBio-conversion,Solid,280.322\nBio-conversion,Gas,81.144\nBiofuel imports,Liquid,35\nBiomass imports,Solid,35\nCoal imports,Coal,11.606\nCoal reserves,Coal,63.965\nCoal,Solid,75.571\nDistrict heating,Industry,10.639\nDistrict heating,Heating and cooling - commercial,22.505\nDistrict heating,Heating and cooling - homes,46.184\nElectricity grid,Over generation / exports,104.453\nElectricity grid,Heating and cooling - homes,113.726\nElectricity grid,H2 conversion,27.14\nElectricity grid,Industry,342.165\nElectricity grid,Road transport,37.797\nElectricity grid,Agriculture,4.412\nElectricity grid,Heating and cooling - commercial,40.858\nElectricity grid,Losses,56.691\nElectricity grid,Rail transport,7.863\nElectricity grid,Lighting & appliances - commercial,90.008\nElectricity grid,Lighting & appliances - homes,93.494\nGas imports,NGas,40.719\nGas reserves,NGas,82.233\nGas,Heating and cooling - commercial,0.129\nGas,Losses,1.401\nGas,Thermal generation,151.891\nGas,Agriculture,2.096\nGas,Industry,48.58\nGeothermal,Electricity grid,7.013\nH2 conversion,H2,20.897\nH2 conversion,Losses,6.242\nH2,Road transport,20.897\nHydro,Electricity grid,6.995\nLiquid,Industry,121.066\nLiquid,International shipping,128.69\nLiquid,Road transport,135.835\nLiquid,Domestic aviation,14.458\nLiquid,International aviation,206.267\nLiquid,Agriculture,3.64\nLiquid,National navigation,33.218\nLiquid,Rail transport,4.413\nMarine algae,Bio-conversion,4.375\nNGas,Gas,122.952\nNuclear,Thermal generation,839.978\nOil imports,Oil,504.287\nOil reserves,Oil,107.703\nOil,Liquid,611.99\nOther waste,Solid,56.587\nOther waste,Bio-conversion,77.81\nPumped heat,Heating and cooling - homes,193.026\nPumped heat,Heating and cooling - commercial,70.672\nSolar PV,Electricity grid,59.901\nSolar Thermal,Heating and cooling - homes,19.263\nSolar,Solar Thermal,19.263\nSolar,Solar PV,59.901\nSolid,Agriculture,0.882\nSolid,Thermal generation,400.12\nSolid,Industry,46.477\nThermal generation,Electricity grid,525.531\nThermal generation,Losses,787.129"
+    },
+    {
+      "id": "timeline-timeline-019",
+      "title": "Timeline",
+      "category": "Timeline",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "timeline\n    title History of Social Media Platform\n    2002 : LinkedIn\n    2004 : Facebook\n         : Google\n    2005 : YouTube\n    2006 : Twitter"
+    },
+    {
+      "id": "treemap-treemap-020",
+      "title": "Treemap",
+      "category": "Treemap",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "treemap-beta\n\"Section 1\"\n    \"Leaf 1.1\": 12\n    \"Section 1.2\"\n      \"Leaf 1.2.1\": 12\n\"Section 2\"\n    \"Leaf 2.1\": 20\n    \"Leaf 2.2\": 25"
+    },
+    {
+      "id": "user-journey-user-journey-021",
+      "title": "User Journey",
+      "category": "User Journey",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "journey\n    title My working day\n    section Go to work\n      Make tea: 5: Me\n      Go upstairs: 3: Me\n      Do work: 1: Me, Cat\n    section Go home\n      Go downstairs: 5: Me\n      Sit down: 5: Me"
+    },
+    {
+      "id": "xy-xy-022",
+      "title": "XY",
+      "category": "XY",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "xychart-beta\n    title \"Sales Revenue\"\n    x-axis [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]\n    y-axis \"Revenue (in $)\" 4000 --> 11000\n    bar [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]\n    line [5000, 6000, 7500, 8200, 9500, 10500, 11000, 10200, 9200, 8500, 7000, 6000]"
+    },
+    {
+      "id": "zenuml-zenuml-023",
+      "title": "ZenUML",
+      "category": "ZenUML",
+      "source": {
+        "file": "mermaid_samples.md",
+        "format": "markdown"
+      },
+      "code": "zenuml\n    title Order Service\n    @Actor Client #FFEBE6\n    @Boundary OrderController #0747A6\n    @EC2 <<BFF>> OrderService #E3FCEF\n    group BusinessService {\n      @Lambda PurchaseService\n      @AzureFunction InvoiceService\n    }\n\n    @Starter(Client)\n    // `POST /orders`\n    OrderController.post(payload) {\n      OrderService.create(payload) {\n        order = new Order(payload)\n        if(order != null) {\n          par {\n            PurchaseService.createPO(order)\n            InvoiceService.createInvoice(order)\n          }\n        }\n      }\n    }"
+    }
+  ]
+}
