@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Mermaid Studio](https://raw.githubusercontent.com/Woody-sudo/Mermaid-Studio/main/public/icon.png)
+![Mermaid Studio](https://raw.githubusercontent.com/Woody-sudo/Mermaid-Studio/main/icon.png)
 
 A beautiful, native macOS-style Mermaid diagram editor built with Tauri and Vite.
 
