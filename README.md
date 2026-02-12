@@ -40,6 +40,11 @@ A beautiful, native macOS-style Mermaid diagram editor built with Tauri and Vite
 ## <a id="installation"></a>🚀 Installation
 
 [See Release Page](https://github.com/Woody-sudo/Mermaid-Studio/releases)
+<div class="macos-notice" style="font-size: 12px; font-weight: 900;">
+  Notice (macOS): Because of the required certificate, macOS may show a warning that the app “can’t be verified.”
+  If you see this warning, go to <strong>System Settings → Privacy &amp; Security</strong> and manually allow/open the app to dismiss the alert.
+</div>
+
 
 
 ## <a id="usage"></a>💻 Usage
