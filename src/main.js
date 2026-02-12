@@ -664,7 +664,7 @@ function parsePngQuality(rawValue) {
 }
 
 async function openSettingsWindow() {
-  const existing = WebviewWindow.getByLabel('settings');
+  const existing = await WebviewWindow.getByLabel('settings');
   if (existing) {
     try {
       await existing.show();
@@ -697,7 +697,7 @@ async function openSettingsWindow() {
 }
 
 async function openExampleLibraryWindow() {
-  const existing = WebviewWindow.getByLabel('example-library');
+  const existing = await WebviewWindow.getByLabel('example-library');
   if (existing) {
     try {
       await existing.show();
