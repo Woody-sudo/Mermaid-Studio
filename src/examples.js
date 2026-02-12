@@ -55,8 +55,6 @@ const btnImportTemplates = document.getElementById('btn-import-templates');
 const btnBackupTemplates = document.getElementById('btn-backup-templates');
 const btnAddCategory = document.getElementById('btn-add-category');
 const btnDeleteCategory = document.getElementById('btn-delete-category');
-const btnEditTemplate = document.getElementById('btn-edit-template');
-const btnCancelTemplateEdit = document.getElementById('btn-cancel-template-edit');
 const libraryLayout = document.querySelector('.library-layout');
 const libraryResizers = [...document.querySelectorAll('.library-resizer')];
 
@@ -83,8 +81,7 @@ const state = {
   activeCategory: 'all',
   query: '',
   selectedId: library[0]?.id || null,
-  isEditingTemplate: false,
-  editingTemplateId: null,
+  previewTemplateId: null,
   pendingTemplateDeleteId: null,
   isAddingCategory: false,
   pendingCategoryName: '',
@@ -276,8 +273,8 @@ function createUniqueTemplateTitle(baseTitle) {
 }
 
 function persistEditingTemplateCode() {
-  if (!state.isEditingTemplate || !previewEditor || !state.editingTemplateId) return;
-  const index = findTemplateIndex(state.editingTemplateId);
+  if (!previewEditor || !state.previewTemplateId) return;
+  const index = findTemplateIndex(state.previewTemplateId);
   if (index < 0) return;
   const nextCode = previewEditor.getValue();
   if (library[index].code === nextCode && library[index].source?.format) return;
@@ -301,7 +298,6 @@ function flushEditingAutosave() {
 }
 
 function queueEditingAutosave() {
-  if (!state.isEditingTemplate) return;
   if (editAutosaveTimer) {
     window.clearTimeout(editAutosaveTimer);
   }
@@ -393,7 +389,7 @@ async function initPreviewEditor() {
   previewEditor = monaco.editor.create(selectedCodeEditorContainer, {
     value: pendingPreviewCode,
     language: 'plaintext',
-    readOnly: true,
+    readOnly: false,
     minimap: {enabled: false},
     automaticLayout: true,
     scrollBeyondLastLine: false,
@@ -667,18 +663,6 @@ function resolveSelectedTemplate(templates) {
   return next;
 }
 
-function setEditMode(enabled) {
-  state.isEditingTemplate = enabled;
-  btnEditTemplate.hidden = enabled;
-  btnCancelTemplateEdit.hidden = !enabled;
-  if (enabled) {
-    state.pendingTemplateDeleteId = null;
-  }
-  if (previewEditor) {
-    previewEditor.updateOptions({readOnly: !enabled});
-  }
-}
-
 function clearPendingTemplateDelete() {
   state.pendingTemplateDeleteId = null;
 }
@@ -695,7 +679,7 @@ function countTemplatesInCategory(categoryName) {
 function refreshTemplateDeleteButton() {
   if (!btnDeleteTemplate) return;
   const selected = getSelectedTemplate();
-  if (!selected || state.isEditingTemplate) {
+  if (!selected) {
     btnDeleteTemplate.disabled = true;
     btnDeleteTemplate.classList.remove('is-pending-delete');
     btnDeleteTemplate.title = t('delete_template');
@@ -806,9 +790,6 @@ function createCategoryButton(category) {
   const title = category.name === 'all' ? t('all_categories') : category.name;
   button.textContent = `${title} (${category.count})`;
   button.addEventListener('click', () => {
-    if (state.isEditingTemplate && state.activeCategory !== category.name) {
-      cancelTemplateEdit();
-    }
     if (state.activeCategory !== category.name) {
       clearPendingTemplateDelete();
     }
@@ -870,21 +851,8 @@ function renderCategories() {
   }
 }
 
-function cancelTemplateEdit() {
-  if (!state.isEditingTemplate) return true;
-
-  flushEditingAutosave();
-  state.editingTemplateId = null;
-  clearPendingTemplateDelete();
-  setEditMode(false);
-  render();
-  return true;
-}
-
 function addTemplateEntry() {
-  if (state.isEditingTemplate) {
-    cancelTemplateEdit();
-  }
+  flushEditingAutosave();
 
   const category = state.activeCategory === 'all' ?
     DEFAULT_NEW_TEMPLATE_CATEGORY :
@@ -913,7 +881,6 @@ function addTemplateEntry() {
   }
   state.selectedId = newTemplate.id;
   render();
-  void startTemplateEdit();
 }
 
 function createTemplateButton(template) {
@@ -932,10 +899,8 @@ function createTemplateButton(template) {
   button.appendChild(title);
   button.appendChild(meta);
   button.addEventListener('click', () => {
-    if (state.isEditingTemplate && state.selectedId !== template.id) {
-      cancelTemplateEdit();
-    }
     if (state.selectedId !== template.id) {
+      flushEditingAutosave();
       clearPendingTemplateDelete();
     }
     clearCategoryComposer();
@@ -943,7 +908,7 @@ function createTemplateButton(template) {
     render();
   });
   button.addEventListener('dblclick', async () => {
-    if (state.isEditingTemplate) return;
+    flushEditingAutosave();
     state.selectedId = template.id;
     render();
     await insertCurrentTemplate(true);
@@ -1041,34 +1006,29 @@ function updateSelectedTemplateMeta({title, category}) {
 
 function renderPreview(template) {
   if (!template) {
+    state.previewTemplateId = null;
     selectedTitle.textContent = t('no_template_selected');
     selectedMeta.textContent = '';
     syncTemplateEditorControls(null);
     setPreviewCode('');
     btnInsert.disabled = true;
     btnInsertClose.disabled = true;
-    btnEditTemplate.disabled = true;
-    btnCancelTemplateEdit.disabled = true;
     refreshTemplateDeleteButton();
     refreshCategoryActionButtons();
     return;
   }
 
-  const editingThisTemplate = state.isEditingTemplate && state.editingTemplateId === template.id;
   selectedTitle.textContent = formatTemplateTitle(template.title) || t('new_template');
-  selectedMeta.textContent = editingThisTemplate ?
-    t('editing_template_hint') :
-    `${template.category} • ${template.source?.file || ''}`;
+  selectedMeta.textContent = t('editing_template_hint');
   syncTemplateEditorControls(template);
 
-  if (!editingThisTemplate) {
+  if (state.previewTemplateId !== template.id) {
+    state.previewTemplateId = template.id;
     setPreviewCode(template.code);
   }
 
-  btnInsert.disabled = state.isEditingTemplate;
-  btnInsertClose.disabled = state.isEditingTemplate;
-  btnEditTemplate.disabled = state.isEditingTemplate;
-  btnCancelTemplateEdit.disabled = !state.isEditingTemplate;
+  btnInsert.disabled = false;
+  btnInsertClose.disabled = false;
   refreshTemplateDeleteButton();
   refreshCategoryActionButtons();
 }
@@ -1077,29 +1037,8 @@ function getSelectedTemplate() {
   return library.find((template) => template.id === state.selectedId) || null;
 }
 
-async function startTemplateEdit() {
-  const template = getSelectedTemplate();
-  if (!template) return;
-  await initPreviewEditor();
-  if (!previewEditor) return;
-
-  state.editingTemplateId = template.id;
-  setEditMode(true);
-  setPreviewCode(template.code);
-  render();
-  previewEditor.focus();
-}
-
-function saveTemplateEdit() {
-  if (!state.isEditingTemplate) return;
-  flushEditingAutosave();
-  state.editingTemplateId = null;
-  setEditMode(false);
-  render();
-}
-
 function deleteSelectedTemplateTwoStep() {
-  if (state.isEditingTemplate) return;
+  flushEditingAutosave();
   const selected = getSelectedTemplate();
   if (!selected) return;
 
@@ -1133,9 +1072,7 @@ function parseImportedTemplatePayload(parsed) {
 
 async function importTemplates() {
   try {
-    if (state.isEditingTemplate) {
-      cancelTemplateEdit();
-    }
+    flushEditingAutosave();
     clearPendingTemplateDelete();
     clearCategoryComposer();
 
@@ -1257,9 +1194,7 @@ async function insertCurrentTemplate(closeAfterInsert = false) {
 }
 
 async function closeLibraryWindow() {
-  if (state.isEditingTemplate) {
-    cancelTemplateEdit();
-  }
+  flushEditingAutosave();
   clearCategoryComposer();
   clearPendingTemplateDelete();
 
@@ -1277,6 +1212,7 @@ async function closeLibraryWindow() {
 }
 
 function render() {
+  flushEditingAutosave();
   const categories = categoriesWithCounts();
   if (state.activeCategory !== 'all' &&
       !categories.some((category) => category.name === state.activeCategory)) {
@@ -1296,9 +1232,6 @@ function render() {
 
 function initEvents() {
   searchInput.addEventListener('input', (event) => {
-    if (state.isEditingTemplate) {
-      cancelTemplateEdit();
-    }
     clearPendingTemplateDelete();
     clearCategoryComposer();
     state.query = event.target.value;
@@ -1322,9 +1255,6 @@ function initEvents() {
   });
 
   btnAddCategory?.addEventListener('click', () => {
-    if (state.isEditingTemplate) {
-      cancelTemplateEdit();
-    }
     startCategoryCreation();
   });
 
@@ -1338,14 +1268,6 @@ function initEvents() {
 
   btnBackupTemplates?.addEventListener('click', async () => {
     await backupTemplates();
-  });
-
-  btnEditTemplate?.addEventListener('click', () => {
-    void startTemplateEdit();
-  });
-
-  btnCancelTemplateEdit?.addEventListener('click', () => {
-    cancelTemplateEdit();
   });
 
   templateNameInput?.addEventListener('input', (event) => {
@@ -1387,35 +1309,24 @@ function initEvents() {
         render();
         return;
       }
-      if (state.isEditingTemplate) {
-        cancelTemplateEdit();
-      } else {
-        await closeLibraryWindow();
-      }
+      await closeLibraryWindow();
       return;
     }
 
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 's') {
-      if (state.isEditingTemplate) {
-        saveTemplateEdit();
-      }
+      flushEditingAutosave();
       event.preventDefault();
       return;
     }
 
     if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
-      if (!state.isEditingTemplate) {
-        await insertCurrentTemplate(false);
-      }
+      await insertCurrentTemplate(false);
       event.preventDefault();
     }
   });
 
   window.addEventListener('beforeunload', () => {
-    if (editAutosaveTimer) {
-      window.clearTimeout(editAutosaveTimer);
-      editAutosaveTimer = null;
-    }
+    flushEditingAutosave();
     previewThemeMedia?.removeEventListener('change', applyPreviewEditorTheme);
     systemAppearanceMedia?.removeEventListener('change', handleSystemAppearanceChange);
     previewEditor?.dispose();
@@ -1463,8 +1374,7 @@ function initSettingsSync() {
         searchInput.value = '';
       }
       state.selectedId = library[0]?.id || null;
-      state.editingTemplateId = null;
-      setEditMode(false);
+      state.previewTemplateId = null;
       render();
     }
   });
