@@ -10,13 +10,13 @@ A beautiful, native macOS-style Mermaid diagram editor built with Tauri and Vite
 [![Tauri](https://img.shields.io/badge/built%20with-Tauri-24C8DB?style=flat-square&logo=tauri&logoColor=black)](https://tauri.app)
 [![Vite](https://img.shields.io/badge/bundled%20with-Vite-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev)
 [![Mermaid](https://img.shields.io/badge/diagrams%20by-Mermaid-ff3670?style=flat-square&logo=mermaid&logoColor=white)](https://mermaid.js.org)
-[![Platform](https://img.shields.io/badge/platform-macOS-000000?style=flat-square&logo=apple&logoColor=white)](https://www.apple.com/macos)
+<!-- [![Platform](https://img.shields.io/badge/platform-macOS-000000?style=flat-square&logo=apple&logoColor=white)](https://www.apple.com/macos) -->
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Tech Stack](#tech-stack)
 
 </div>
 
-## ✨ Features
+## <a id="features"></a>✨ Features
 
 - **Beautiful Diagrams**: Powered by **[beautiful-mermaid](https://github.com/lukilabs/beautiful-mermaid)** for stunning, customizable visualizations.
 - **Smart Fallback**: Automatically falls back to standard Mermaid rendering for diagram types not yet supported by `beautiful-mermaid`.
@@ -28,7 +28,7 @@ A beautiful, native macOS-style Mermaid diagram editor built with Tauri and Vite
 - **Theme Support**: Fully supports Light, Dark, and Auto (System) appearance modes.
 - **Examples Library**: Includes a collection of varied Mermaid diagram examples to get you started.
 
-## 🛠 Tech Stack
+## <a id="tech-stack"></a>🛠 Tech Stack
 
 - **[Tauri](https://github.com/tauri-apps/tauri)**: For a lightweight, secure, and fast desktop application runtime.
 - **[Vite](https://github.com/vitejs/vite)**: For lightning-fast frontend tooling.
@@ -37,13 +37,12 @@ A beautiful, native macOS-style Mermaid diagram editor built with Tauri and Vite
 - **[Monaco Editor](https://microsoft.github.io/monaco-editor/)**: The code editor that powers VS Code.
 - **Vanilla JS/CSS**: For maximum performance and control over the UI without framework overhead.
 
-## 🚀 Installation
+## <a id="installation"></a>🚀 Installation
 
-### Prerequisites
+[See Release Page](https://github.com/Woody-sudo/Mermaid-Studio/releases)
 
 
-
-## 💻 Usage
+## <a id="usage"></a>💻 Usage
 
 ### Development
 
