@@ -1019,7 +1019,7 @@ function renderPreview(template) {
   }
 
   selectedTitle.textContent = formatTemplateTitle(template.title) || t('new_template');
-  selectedMeta.textContent = t('editing_template_hint');
+  selectedMeta.textContent = `${template.category} • ${template.source?.file || ''}`;
   syncTemplateEditorControls(template);
 
   if (state.previewTemplateId !== template.id) {
