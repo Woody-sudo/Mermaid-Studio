@@ -11,7 +11,6 @@ import mermaid from 'mermaid';
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
 
-import {installAntiInspect} from './anti-inspect.js';
 import {applyI18n, getLocale, setLocale, t} from './i18n.js';
 
 if (typeof self !== 'undefined') {
@@ -25,8 +24,6 @@ if (typeof self !== 'undefined') {
 const MERMAID_LANGUAGE_ID = 'mermaid';
 const MONACO_THEME_LIGHT = 'mermaid-studio-light';
 const MONACO_THEME_DARK = 'mermaid-studio-dark';
-
-installAntiInspect();
 
 // ===== Example diagrams =====
 const EXAMPLES = {
@@ -393,6 +390,24 @@ function shortcutForMenuCommand() {
 
 function shortcutForSettingsCommand() {
   return IS_MACOS ? '⌘,' : 'Ctrl+,';
+}
+
+function isEventFromMonaco(event) {
+  if (mermaidEditor?.hasTextFocus?.()) return true;
+
+  const target = event?.target;
+  if (target instanceof Element) {
+    return Boolean(target.closest('.monaco-editor'));
+  }
+  if (target instanceof Node) {
+    return Boolean(target.parentElement?.closest('.monaco-editor'));
+  }
+
+  if (document.activeElement instanceof Element) {
+    return Boolean(document.activeElement.closest('.monaco-editor'));
+  }
+
+  return false;
 }
 
 function getDefaultExportFormat() {
@@ -1024,6 +1039,81 @@ function applyEditorTheme() {
       isDarkAppearance() ? MONACO_THEME_DARK : MONACO_THEME_LIGHT);
 }
 
+function getMonacoSelectedText(editor) {
+  const model = editor?.getModel();
+  if (!model) return '';
+
+  const selections = editor.getSelections() || [];
+  if (selections.length === 0) return '';
+
+  const parts = selections
+      .filter((selection) => selection && !selection.isEmpty())
+      .map((selection) => model.getValueInRange(selection))
+      .filter((text) => text.length > 0);
+  return parts.join('\n');
+}
+
+function isNodeInsideMonaco(node) {
+  if (node instanceof Element) return Boolean(node.closest('.monaco-editor'));
+  if (node instanceof Node) {
+    return Boolean(node.parentElement?.closest('.monaco-editor'));
+  }
+  return false;
+}
+
+function getNativeSelectionTextInMonaco() {
+  if (typeof window === 'undefined') return '';
+  const selection = window.getSelection();
+  if (!selection || selection.rangeCount === 0) return '';
+
+  const anchorInMonaco = isNodeInsideMonaco(selection.anchorNode);
+  const focusInMonaco = isNodeInsideMonaco(selection.focusNode);
+  if (!anchorInMonaco && !focusInMonaco) return '';
+
+  return String(selection.toString() || '');
+}
+
+function resolveMonacoClipboardText(editor) {
+  const monacoText = getMonacoSelectedText(editor);
+  const nativeText = getNativeSelectionTextInMonaco();
+  if (nativeText.length > monacoText.length) return nativeText;
+  return monacoText || nativeText;
+}
+
+function installMonacoCopyHandler(editor) {
+  const domNode = editor?.getDomNode();
+  if (!(domNode instanceof HTMLElement)) return;
+
+  domNode.addEventListener('copy', (event) => {
+    if (!(event instanceof ClipboardEvent)) return;
+    if (!event.clipboardData) return;
+
+    const selectedText = resolveMonacoClipboardText(editor);
+    if (!selectedText) return;
+
+    event.clipboardData.setData('text/plain', selectedText);
+    event.preventDefault();
+  }, true);
+}
+
+function installGlobalMonacoCopyHandler(editor) {
+  document.addEventListener('copy', (event) => {
+    if (!(event instanceof ClipboardEvent)) return;
+    if (!event.clipboardData) return;
+
+    const fromMonaco = editor?.hasTextFocus?.() ||
+        isEventFromMonaco(event) ||
+        Boolean(getNativeSelectionTextInMonaco());
+    if (!fromMonaco) return;
+
+    const selectedText = resolveMonacoClipboardText(editor);
+    if (!selectedText) return;
+
+    event.clipboardData.setData('text/plain', selectedText);
+    event.preventDefault();
+  }, true);
+}
+
 function initEditor() {
   if (!editorContainer) return;
 
@@ -1036,6 +1126,7 @@ function initEditor() {
     value: EXAMPLES.flowchart,
     language: MERMAID_LANGUAGE_ID,
     automaticLayout: true,
+    contextmenu: true,
     minimap: {enabled: false},
     scrollBeyondLastLine: false,
     fontFamily: settings.codeFont,
@@ -1053,6 +1144,8 @@ function initEditor() {
   });
 
   applyEditorTheme();
+  installMonacoCopyHandler(mermaidEditor);
+  installGlobalMonacoCopyHandler(mermaidEditor);
   mermaidEditor.onDidChangeModelContent(debouncedRender);
 }
 
@@ -1337,6 +1430,7 @@ function initZoomControls() {
   // Cmd/Ctrl+L (open example library)
   // Cmd/Ctrl+O (export using default format)
   document.addEventListener('keydown', (e) => {
+    if (isEventFromMonaco(e)) return;
     if (!(e.metaKey || e.ctrlKey)) return;
     const key = e.key.toLowerCase();
     if (key === '=' || key === '+') {

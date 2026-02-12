@@ -5,13 +5,11 @@ import {open, save} from '@tauri-apps/plugin-dialog';
 import {readTextFile, writeTextFile} from '@tauri-apps/plugin-fs';
 import {getCurrentWindow} from '@tauri-apps/api/window';
 
-import {installAntiInspect} from './anti-inspect.js';
 import {applyI18n, setLocale, t} from './i18n.js';
 import exampleLibrary from './data/example-library.json';
 
 const INSERT_EXAMPLE_TEMPLATE_EVENT = 'example-library-insert-template';
 const SETTINGS_EVENT = 'settings-updated';
-installAntiInspect();
 
 const DEFAULT_UI_FONT =
   '-apple-system, BlinkMacSystemFont, \'SF Pro Text\', \'Helvetica Neue\', sans-serif';
@@ -374,6 +372,99 @@ function applyPreviewEditorTheme() {
   monaco.editor.setTheme(isDarkEffective() ? 'vs-dark' : 'vs');
 }
 
+function isNodeInsideMonaco(node) {
+  if (node instanceof Element) return Boolean(node.closest('.monaco-editor'));
+  if (node instanceof Node) {
+    return Boolean(node.parentElement?.closest('.monaco-editor'));
+  }
+  return false;
+}
+
+function isEventFromMonaco(event) {
+  if (previewEditor?.hasTextFocus?.()) return true;
+
+  const target = event?.target;
+  if (target instanceof Element) {
+    return Boolean(target.closest('.monaco-editor'));
+  }
+  if (target instanceof Node) {
+    return Boolean(target.parentElement?.closest('.monaco-editor'));
+  }
+
+  if (document.activeElement instanceof Element) {
+    return Boolean(document.activeElement.closest('.monaco-editor'));
+  }
+
+  return false;
+}
+
+function getMonacoSelectedText(editor) {
+  const model = editor?.getModel();
+  if (!model) return '';
+
+  const selections = editor.getSelections() || [];
+  if (selections.length === 0) return '';
+
+  const parts = selections
+      .filter((selection) => selection && !selection.isEmpty())
+      .map((selection) => model.getValueInRange(selection))
+      .filter((text) => text.length > 0);
+  return parts.join('\n');
+}
+
+function getNativeSelectionTextInMonaco() {
+  if (typeof window === 'undefined') return '';
+  const selection = window.getSelection();
+  if (!selection || selection.rangeCount === 0) return '';
+
+  const anchorInMonaco = isNodeInsideMonaco(selection.anchorNode);
+  const focusInMonaco = isNodeInsideMonaco(selection.focusNode);
+  if (!anchorInMonaco && !focusInMonaco) return '';
+
+  return String(selection.toString() || '');
+}
+
+function resolveMonacoClipboardText(editor) {
+  const monacoText = getMonacoSelectedText(editor);
+  const nativeText = getNativeSelectionTextInMonaco();
+  if (nativeText.length > monacoText.length) return nativeText;
+  return monacoText || nativeText;
+}
+
+function installMonacoCopyHandler(editor) {
+  const domNode = editor?.getDomNode();
+  if (!(domNode instanceof HTMLElement)) return;
+
+  domNode.addEventListener('copy', (event) => {
+    if (!(event instanceof ClipboardEvent)) return;
+    if (!event.clipboardData) return;
+
+    const selectedText = resolveMonacoClipboardText(editor);
+    if (!selectedText) return;
+
+    event.clipboardData.setData('text/plain', selectedText);
+    event.preventDefault();
+  }, true);
+}
+
+function installGlobalMonacoCopyHandler(editor) {
+  document.addEventListener('copy', (event) => {
+    if (!(event instanceof ClipboardEvent)) return;
+    if (!event.clipboardData) return;
+
+    const fromMonaco = editor?.hasTextFocus?.() ||
+        isEventFromMonaco(event) ||
+        Boolean(getNativeSelectionTextInMonaco());
+    if (!fromMonaco) return;
+
+    const selectedText = resolveMonacoClipboardText(editor);
+    if (!selectedText) return;
+
+    event.clipboardData.setData('text/plain', selectedText);
+    event.preventDefault();
+  }, true);
+}
+
 function relayoutPreviewEditor() {
   if (!previewEditor) return;
   requestAnimationFrame(() => {
@@ -390,6 +481,7 @@ async function initPreviewEditor() {
     value: pendingPreviewCode,
     language: 'plaintext',
     readOnly: false,
+    contextmenu: true,
     minimap: {enabled: false},
     automaticLayout: true,
     scrollBeyondLastLine: false,
@@ -410,6 +502,8 @@ async function initPreviewEditor() {
   });
 
   applyPreviewEditorTheme();
+  installMonacoCopyHandler(previewEditor);
+  installGlobalMonacoCopyHandler(previewEditor);
   previewEditor.onDidChangeModelContent(() => {
     queueEditingAutosave();
   });

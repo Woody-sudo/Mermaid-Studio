@@ -76,8 +76,8 @@ This repository includes a GitHub Actions workflow at:
 It will automatically build macOS / Windows / Linux binaries and attach them to a GitHub Release when you push a tag like:
 
 ```bash
-git tag v0.6.1
-git push origin v0.6.1
+git tag v0.8.0
+git push origin v0.8.0
 ```
 
 ### Notes
