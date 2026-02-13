@@ -32,7 +32,7 @@ A beautiful, native macOS-style Mermaid diagram editor built with Tauri and Vite
 
 - **[Tauri](https://github.com/tauri-apps/tauri)**: For a lightweight, secure, and fast desktop application runtime.
 - **[Vite](https://github.com/vitejs/vite)**: For lightning-fast frontend tooling.
-- **[Mermaid.js](github.com/mermaid-js/mermaid)**: The core diagramming engine.
+- **[Mermaid.js](https://github.com/mermaid-js/mermaid)**: The core diagramming engine.
 - **[beautiful-mermaid](https://github.com/lukilabs/beautiful-mermaid)**: For enhanced diagram styling and aesthetics.
 - **[Monaco Editor](https://microsoft.github.io/monaco-editor/)**: The code editor that powers VS Code.
 - **Vanilla JS/CSS**: For maximum performance and control over the UI without framework overhead.
