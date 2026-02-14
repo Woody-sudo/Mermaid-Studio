@@ -14,11 +14,12 @@ A beautiful, native macOS-style Mermaid diagram editor built with Tauri and Vite
 
 
 
-<!-- [![License](https://img.shields.io/github/license/Woody-sudo/Mermaid-Studio?style=flat-square)](https://github.com/Woody-sudo/Mermaid-Studio/blob/main/LICENSE) -->
+[![License](https://img.shields.io/github/license/Woody-sudo/Mermaid-Studio?style=flat-square)](https://github.com/Woody-sudo/Mermaid-Studio/blob/main/LICENSE)
 [![Tauri](https://img.shields.io/badge/built%20with-Tauri-24C8DB?style=flat-square&logo=tauri&logoColor=black)](https://tauri.app)
 [![Vite](https://img.shields.io/badge/bundled%20with-Vite-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev)
 [![Mermaid](https://img.shields.io/badge/diagrams%20by-Mermaid-ff3670?style=flat-square&logo=mermaid&logoColor=white)](https://mermaid.js.org)
-<!-- [![Platform](https://img.shields.io/badge/platform-macOS-000000?style=flat-square&logo=apple&logoColor=white)](https://www.apple.com/macos) -->
+[![](https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-blue)]()
+
 
 [Features](#features) • [Installation](#installation) • [Usage](#usage) • [Tech Stack](#tech-stack)
 
