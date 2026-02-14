@@ -6,6 +6,14 @@
 
 A beautiful, native macOS-style Mermaid diagram editor built with Tauri and Vite.
 
+
+
+<a href="https://mermaidstudio.cc/" target="_blank">
+  <img src="https://img.shields.io/badge/-Try%20Online-007AFF?style=for-the-badge" alt="Try Online" />
+</a>
+
+
+
 <!-- [![License](https://img.shields.io/github/license/Woody-sudo/Mermaid-Studio?style=flat-square)](https://github.com/Woody-sudo/Mermaid-Studio/blob/main/LICENSE) -->
 [![Tauri](https://img.shields.io/badge/built%20with-Tauri-24C8DB?style=flat-square&logo=tauri&logoColor=black)](https://tauri.app)
 [![Vite](https://img.shields.io/badge/bundled%20with-Vite-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev)
